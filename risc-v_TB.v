@@ -12,28 +12,61 @@ module testbench;
     $dumpfile("wave.vcd");
     $dumpvars(0, testbench);
 
-    // (Opcional) inicializa DataMemory, caso você tenha um data.mem
-    // $readmemh("data.mem", UUT.datamem.mem);
-
-    // Aplica reset por 2 ciclos
+    // --- Reset inicial por 2 ciclos (~40 ns) ---
     reset = 1;
     #20;
     reset = 0;
+
+    // --- Carrega programa na InstructionMemory manualmente ---
+    // lb   x5, 0(x0)      
+    UUT.instmemo.mem[0] = 32'h00000283;
+    // sb   x5, 4(x0)      
+    UUT.instmemo.mem[1] = 32'h00500223;
+    // sub  x6, x2, x1     
+    UUT.instmemo.mem[2] = 32'h401101B3;
+    // and  x7, x2, x1     
+    UUT.instmemo.mem[3] = 32'h01172333;
+    // ori  x8, x3, 1      
+    UUT.instmemo.mem[4] = 32'h0011E293;
+    // srl  x9, x5, x0     
+    UUT.instmemo.mem[5] = 32'h002D3333;
+    // beq  x6, x5, +4     
+    UUT.instmemo.mem[6] = 32'h00530263;
+    // instrução “errada” (NOP em RISC-V = addi x0,x0,0)
+    UUT.instmemo.mem[7] = 32'h00000013;
+    // preencha o resto com NOP
+    for (i = 8; i < 32; i = i + 1)
+      UUT.instmemo.mem[i] = 32'h00000013;
+
+    // --- Inicializa DataMemory e registradores ---
+    UUT.datamem.mem[0]  = 8'h07;          // dado para o lb
+    // deixe o byte 4 limpo (será escrito pelo sb)
+    UUT.datamem.mem[4]  = 8'h00;          
+    // zere x1 e x2 (são usados no sub/and)
+    UUT.regs.register1  = 32'h00000000;  
+    UUT.regs.register2  = 32'h00000000;  
+    // x3 será usado pelo ORI
+    UUT.regs.register3  = 32'h00000000;
+    // x10 não é usado nesse programa, pode ignorar
+
+    // pronto, o clock interno já está rodando...
   end
 
   initial begin
-    // deixa rodar o programa
+    // deixe rodar tudo
     #500;
 
+    // === Verificação dos valores esperados ===
     $display("\n=== Verificação dos valores esperados ===");
     $display("x5  (lb):      %h (esperado: 07)",       UUT.regs.register5);
-    $display("x6  (addi/sub):%h (esperado: 00)",       UUT.regs.register6);
+    $display("x6  (sub):     %h (esperado: 00)",       UUT.regs.register6);
     $display("x7  (and):     %h (esperado: 00)",       UUT.regs.register7);
-    $display("x8  (ori):     %h (esperado: 0000F0F0)", UUT.regs.register8);
-    $display("x9  (srl):     %h (esperado: 00000003)", UUT.regs.register9);
-    $display("Mem[4] (sb):   %h (esperado: 0F)\n",     UUT.datamem.mem[4]);
+    $display("x8  (ori):     %h (esperado: 00000001)", UUT.regs.register8);
+    $display("x9  (srl):     %h (esperado: 00000000)", UUT.regs.register9);
+    $display("Mem[4] (sb):   %h (esperado: 07)\n",     UUT.datamem.mem[4]);
 
-    $display("=== Estado completo dos registradores ===");
+    // === Estado completo dos registradores ===
+    $display("=== Estado dos registradores ===");
     $display("x0 : %h", UUT.regs.register0);
     $display("x1 : %h", UUT.regs.register1);
     $display("x2 : %h", UUT.regs.register2);
@@ -45,30 +78,11 @@ module testbench;
     $display("x8 : %h", UUT.regs.register8);
     $display("x9 : %h", UUT.regs.register9);
     $display("x10: %h", UUT.regs.register10);
-    $display("x11: %h", UUT.regs.register11);
-    $display("x12: %h", UUT.regs.register12);
-    $display("x13: %h", UUT.regs.register13);
-    $display("x14: %h", UUT.regs.register14);
-    $display("x15: %h", UUT.regs.register15);
-    $display("x16: %h", UUT.regs.register16);
-    $display("x17: %h", UUT.regs.register17);
-    $display("x18: %h", UUT.regs.register18);
-    $display("x19: %h", UUT.regs.register19);
-    $display("x20: %h", UUT.regs.register20);
-    $display("x21: %h", UUT.regs.register21);
-    $display("x22: %h", UUT.regs.register22);
-    $display("x23: %h", UUT.regs.register23);
-    $display("x24: %h", UUT.regs.register24);
-    $display("x25: %h", UUT.regs.register25);
-    $display("x26: %h", UUT.regs.register26);
-    $display("x27: %h", UUT.regs.register27);
-    $display("x28: %h", UUT.regs.register28);
-    $display("x29: %h", UUT.regs.register29);
-    $display("x30: %h", UUT.regs.register30);
-    $display("x31: %h", UUT.regs.register31);
+    // … e assim por diante até x31, se quiser
 
+    // === Primeiras 32 posições da memória de dados (bytes) ===
     $display("\n=== Primeiras 32 posições da memória de dados (bytes) ===");
-    for (i = 0; i < 32; i = i + 1)
+    for (i = 0; i < 8; i = i + 1)
       $display("mem[%0d]: %h", i, UUT.datamem.mem[i]);
 
     $finish;

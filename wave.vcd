@@ -1,5 +1,5 @@
 $date
-	Sun Jul 27 18:13:26 2025
+	Sun Jul 27 18:22:09 2025
 $end
 $version
 	Icarus Verilog
@@ -1069,72 +1069,223 @@ bx "
 1!
 $end
 #200
+0L#
+0F#
+0@#
+0:#
+04#
+0.#
+0(#
+0"#
+0z"
+0t"
+0n"
+0h"
+0b"
+0\"
+0V"
+0P"
+0J"
+0D"
+0>"
+08"
+02"
+0,"
+0&"
+0~
+0x
+0r
+0l
+0f
+0`
+0Z
+0T
+0N
+1K#
+1E#
+1?#
+19#
+13#
+1-#
+1'#
+1!#
+1y"
+1s"
+1m"
+1g"
+1a"
+1["
+1U"
+1O"
+1I"
+1C"
+1="
+17"
+11"
+1+"
+1%"
+1}
+1w
+1q
+1k
+1e
+1_
+1Y
+1S
+1M
+b10 ;
+b10 K
+b10 N$
+1H$
+b0 G
+b0 x#
+b0x (
+b0x e$
+b0x l$
+1F$
+b0 E
+b0 @$
+0A$
+b0 I
+b0 Q#
+b0 '
+b0 <
+b0 c$
+b0 )
+b0 J
+b0 S#
+b0 V#
+b0 y#
+b0 >$
+b0 B$
+b0 j$
+b0 ,
+b0 >
+b0 `$
+b0 i$
+b111 -
+b111 h$
+b111 q$
+0:
+09
+12
+17
+b111 0
+b111 Y$
+b111 f$
+b100000000100 _$
+b101 ]$
+b0 ^$
+b11 [$
+b101 r$
+b0 p$
+16
+15
+1U$
+0R$
+b11 Q$
+b100000 "
+b1010000011 *
+b1010000011 \$
+b1010000011 a$
 0!
 #500
-xL#
 xO#
-xF#
 xI#
-x@#
 xC#
-x:#
 x=#
-x4#
 x7#
-x.#
 x1#
-x(#
 x+#
-x"#
 x%#
-xz"
 x}"
-xt"
 xw"
-xn"
 xq"
-xh"
 xk"
-xb"
 xe"
-x\"
 x_"
-xV"
 xY"
-xP"
 xS"
-xJ"
 xM"
-xD"
 xG"
-x>"
 xA"
-x8"
 x;"
-x2"
 x5"
-x,"
 x/"
-x&"
 x)"
-x~
 x#"
-xx
 x{
-xr
 xu
-xl
 xo
-xf
 xi
-x`
 xc
-xZ
 x]
-xT
 xW
-xN
 xQ
+xM#
+xL#
+xG#
+xF#
+xA#
+x@#
+x;#
+x:#
+x5#
+x4#
+x/#
+x.#
+x)#
+x(#
+x##
+x"#
+x{"
+xz"
+xu"
+xt"
+xo"
+xn"
+xi"
+xh"
+xc"
+xb"
+x]"
+x\"
+xW"
+xV"
+xQ"
+xP"
+xK"
+xJ"
+xE"
+xD"
+x?"
+x>"
+x9"
+x8"
+x3"
+x2"
+x-"
+x,"
+x'"
+x&"
+x!"
+x~
+xy
+xx
+xs
+xr
+xm
+xl
+xg
+xf
+xa
+x`
+x[
+xZ
+xU
+xT
+xO
+xN
 xK#
 xE#
 x?#
@@ -1167,75 +1318,30 @@ x_
 xY
 xS
 xM
-xM#
-xG#
-xA#
-x;#
-x5#
-x/#
-x)#
-x##
-x{"
-xu"
-xo"
-xi"
-xc"
-x]"
-xW"
-xQ"
-xK"
-xE"
-x?"
-x9"
-x3"
-x-"
-x'"
-x!"
-xy
-xs
-xm
-xg
-xa
-x[
-xU
-xO
-xL$
 xH$
 b0xxx ;
 b0xxx K
 b0xxx N$
+xL$
+xM$
+xF$
 xI$
 xJ$
 xK$
-b0 G
-b0 x#
-xM$
-xG$
-xF$
-b0 E
-b0 @$
-0A$
-b0 I
-b0 Q#
-xE$
-b0 )
-b0 J
-b0 S#
-b0 V#
-b0 y#
-b0 >$
-b0 B$
-b0 j$
-b0 ,
-b0 >
-b0 `$
-b0 i$
-bx P$
-xO$
-x:
-x9
 x2
 x7
+xE$
+xG$
+bx P$
+xO$
+b0 0
+b0 Y$
+b0 f$
+b0 -
+b0 h$
+b0 q$
+x:
+x9
 bx (
 bx e$
 bx l$
@@ -1268,11 +1374,12 @@ x=
 bx *
 bx \$
 bx a$
-b0xx1 +
-b0xx1 ?
-b0xx1 C
-b0xx1 b$
-b0xx1 n$
+b0x +
+b0x ?
+b0x C
+b0x b$
+b0x n$
+b111 2%
 11
 #1000
 01
@@ -1297,4 +1404,4 @@ bx n$
 11
 #5000
 01
-b100000 "
+b1000 "
