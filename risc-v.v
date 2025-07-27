@@ -18,6 +18,9 @@ module riscv (
     initial begin
         $dumpfile("my_dumpfile.vcd"); 
         $dumpvars(0, riscv);
+        $readmemh("regs.mem",    UUT.register_file.regs);
+        // carrega a memória de dados
+        $readmemh("data.mem",    UUT.data_memory.mem);
     end
     /* 
         Wires especificados. Para localizar exatamente

@@ -155,6 +155,8 @@ module InstructionMemory(
             Memory[i] = 32'b0;
         end
     end
-    
+    initial begin
+    $readmemh("teste_grupo4.hex", mem);
+    end
     assign instruction = Memory[PC];
 endmodule
