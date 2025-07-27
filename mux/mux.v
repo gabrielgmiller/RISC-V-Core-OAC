@@ -1,14 +1,9 @@
 module mux (
-    input wire [31:0] A,
-    input wire [31:0] B,
-    input wire select,
-    output reg [31:0] result
+  input  [31:0] A,
+  input  [31:0] B,
+  input         select,
+  output [31:0] result
 );
-
-always @(*) begin
-    case(select)
-        1'b1: result = A;
-        default: result = B;
-    endcase
-end
+  // operador ternário elimina o always/reg
+  assign result = select ? A : B;
 endmodule

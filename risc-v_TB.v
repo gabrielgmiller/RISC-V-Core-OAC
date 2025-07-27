@@ -1,6 +1,7 @@
 `timescale 1ns/100ps
 
 module testbench();
+  integer i;
   // sinal de reset
   reg reset;
   
@@ -80,7 +81,6 @@ module testbench();
 
     // === Primeiras 32 posições da memória de dados ===
     $display("=== Primeiras 32 posições da memória de dados ===");
-    integer i;
     for (i = 0; i < 32; i = i + 1) begin
       $display("Mem[%0d]: %h", i, UUT.datamem.mem[i]);
     end
