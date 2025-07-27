@@ -14,36 +14,34 @@ module ALU (
     // resultados das operações
     wire [31:0] resAdd, resSub, resAnd, resOr, resSrl;
 
-    // instâncias
+    // instâncias dos operadores
     sumALU    adder    (.A(A), .B(B), .result(resAdd), .Cout());
     sub       subtract(.A(A), .B(B), .result(resSub), .Cout());
     andModule andmod   (.A(A), .B(B), .result(resAnd));
     orModule  ormod    (.A(A), .B(B), .result(resOr));
-    srl       srlmod   (.A(A), .B(B), .result(resSrl));
+    srlModule srlmod   (.A(A), .B(B), .result(resSrl));  // módulo SRL
 
+    // MUX bit-a-bit usando generate
     genvar i;
     generate
         for (i = 0; i < 32; i = i + 1) begin : MUX_BIT
-            // seletor de cada operação para o bit i
-            wire sel_add, sel_sub, sel_and, sel_or, sel_srl;
-
-            and(sel_add, resAdd[i], ~ALUOp[3], ~ALUOp[2],  ALUOp[1], ~ALUOp[0]); // 0010
-            and(sel_sub, resSub[i], ~ALUOp[3],  ALUOp[2],  ALUOp[1], ~ALUOp[0]); // 0110
-            and(sel_and, resAnd[i], ~ALUOp[3], ~ALUOp[2], ~ALUOp[1], ~ALUOp[0]); // 0000
-            and(sel_or,  resOr[i],  ~ALUOp[3], ~ALUOp[2], ~ALUOp[1],  ALUOp[0]); // 0001
-            and(sel_srl,resSrl[i],  ALUOp[3], ~ALUOp[2],  ALUOp[1], ~ALUOp[0]); // 1001
+            wire sel_add  = (~ALUOp[3] & ~ALUOp[2] &  ALUOp[1] & ~ALUOp[0]); // 4'b0010
+            wire sel_sub  = (~ALUOp[3] &  ALUOp[2] &  ALUOp[1] & ~ALUOp[0]); // 4'b0110
+            wire sel_and  = (~ALUOp[3] & ~ALUOp[2] & ~ALUOp[1] & ~ALUOp[0]); // 4'b0000
+            wire sel_or   = (~ALUOp[3] & ~ALUOp[2] & ~ALUOp[1] &  ALUOp[0]); // 4'b0001
+            wire sel_srl  = ( ALUOp[3] & ~ALUOp[2] &  ALUOp[1] & ~ALUOp[0]); // 4'b1010 (ajuste conforme seu ALU_Control)
 
             or(result[i],
-               sel_add,
-               sel_sub,
-               sel_and,
-               sel_or,
-               sel_srl
+               (resAdd[i] & sel_add),
+               (resSub[i] & sel_sub),
+               (resAnd[i] & sel_and),
+               (resOr[i]  & sel_or),
+               (resSrl[i] & sel_srl)
             );
         end
     endgenerate
 
-    // zero = NOR de todos os bits
+    // zero flag: high quando result==0
     assign zero = ~|result;
 
 endmodule
