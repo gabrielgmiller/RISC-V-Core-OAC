@@ -1,17 +1,27 @@
+// ============ CLOCK & MEMÓRIAS ============
 `include "ClockGenerator/clock_gen.v"
 `include "InstructionMemory/InstructionMemory.v"
+`include "DataMemory/DataMemory.v"
+
+// ============ REGISTROS ============
 `include "Registers/PC.v"
-`include "Control-Monocycle/Control.v"
 `include "Registers/Registers.v"
+
+// ============ CONTROL ============
+`include "Control-Monocycle/Control.v"
 `include "ImmediateGenerator/immediateG.v"
 `include "ALU_Control/ALU_Control_structural.v"
+
+// ============ ALU & OPERATIONS ============
+`include "ALU/operations/and.v"
+`include "ALU/operations/or.v"
+`include "ALU/operations/srl.v"
+`include "ALU/operations/sub.v"
+`include "ALU/operations/sum.v"
 `include "ALU/ALU.v"
-`include "DataMemory/DataMemory.v"
+
+// ============ MUX ============
 `include "mux/mux.v"
-/*
-  Este módulo é o datapath + control monociclo do RISC-V,
-  sem nenhum bloco inicial de simulação ou carregamento de memórias.
-*/
 
 module riscv (
     input reset

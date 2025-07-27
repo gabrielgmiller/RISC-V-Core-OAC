@@ -1,8 +1,3 @@
-`include "ALU/operations/and.v"
-`include "ALU/operations/sub.v"
-`include "ALU/operations/sum.v"
-`include "ALU/operations/or.v"
-`include "ALU/operations/srl.v"
 
 module ALU (
     input  [31:0] A,
@@ -13,7 +8,7 @@ module ALU (
 );
     wire [31:0] resAdd, resSub, resAnd, resOr, resSrl;
 
-    sumALU    adder    (.A(A), .B(B), .result(resAdd), .Cout());
+    sum    adder    (.A(A), .B(B), .result(resAdd), .Cout());
     sub       subtract(.A(A), .B(B), .result(resSub), .Cout());
     andModule andmod   (.A(A), .B(B), .result(resAnd));
     orModule  ormod    (.A(A), .B(B), .result(resOr));
