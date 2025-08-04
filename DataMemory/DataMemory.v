@@ -17,15 +17,6 @@ module data_memory(
         // zera tudo
         for (i = 0; i < 128; i = i + 1)
             mem[i] = 8'h00;
-
-        // exemplo de inicialização manual seguindo seu mapa antigo:
-        // Memory[0] = 9  → bytes [0..3] formam 0x00000009
-        mem[0] = 8'h00; mem[1] = 8'h00; mem[2] = 8'h00; mem[3] = 8'h09;
-        // Memory[1] = 10 → bytes [4..7] formam 0x0000000A
-        mem[4] = 8'h00; mem[5] = 8'h00; mem[6] = 8'h00; mem[7] = 8'h0A;
-        // … e assim por diante para Memory[2]..Memory[12]
-        // Se ficar muito verboso, use:
-        //    $readmemh("data_mem_init.mem", mem);
     end
 
     // escrita de byte: no flanco de subida do clock

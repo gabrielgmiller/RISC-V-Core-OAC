@@ -1,16 +1,16 @@
-// Control-Monocycle/Control.v
-module ControlUnit (
+// Pipeline/ControlUnit_Pipeline.v
+`timescale 1ns/100ps
+
+module ControlUnit_Pipeline (
     input  [6:0] Op,
-    output       RegDst,
-    output       ALUSrc,
-    output       MemToReg,
     output       RegWrite,
+    output       MemToReg,
     output       MemRead,
     output       MemWrite,
+    output       ALUSrc,
     output       Branch,
     output       Jump,
-    output       ALUOp1,
-    output       ALUOp0
+    output [1:0] ALUOp
 );
     // Tipos de instrução:
     // R-type = 0110011 (sub, and, srl)
@@ -27,14 +27,16 @@ module ControlUnit (
     wire Branch_type = (Op == 7'b1100011);
     wire Jump_type = (Op == 7'b1101111);
 
-    assign RegDst   = R_type;                    // Não usado no RISC-V (sempre rd)
-    assign ALUSrc   = I_arith | Load | Store;    // Usa imediato
-    assign MemToReg = Load;                      // Escreve dado da memória no registrador
     assign RegWrite = R_type | I_arith | Load;   // Escreve no banco de registradores
+    assign MemToReg = Load;                      // Escreve dado da memória no registrador
     assign MemRead  = Load;                      // Lê da memória
     assign MemWrite = Store;                     // Escreve na memória
+    assign ALUSrc   = I_arith | Load | Store;    // Usa imediato
     assign Branch   = Branch_type;               // Instrução de branch
     assign Jump     = Jump_type;                 // Instrução de jump
-    assign ALUOp1   = R_type | I_arith;          // R-type ou I-type aritmético
-    assign ALUOp0   = Branch_type | I_arith;     // Branch ou I-type
+    
+    // ALUOp encoding: 00=Load/Store, 01=Branch, 10=R-type, 11=I-type
+    assign ALUOp[1] = R_type | I_arith;
+    assign ALUOp[0] = Branch_type | I_arith;
+
 endmodule

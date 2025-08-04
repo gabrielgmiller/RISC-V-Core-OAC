@@ -11,5 +11,6 @@ module InstructionMemory(
         $readmemh("teste_grupo4.hex", mem);
     end
 
-    assign instruction = mem[PC];
+    // Divide PC por 4 para obter o índice da palavra
+    assign instruction = mem[PC >> 2];
 endmodule

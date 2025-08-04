@@ -155,7 +155,7 @@ module Registers (
     always @(posedge clk) begin
         if (regWrite == 1'b1) begin
            case (writeRegister)
-            5'h0 : register0  = writeData;
+            5'h0 : register0  = 32'd0;      // x0 sempre zero no RISC-V
             5'h1 : register1  = writeData;
             5'h2 : register2  = writeData;
             5'h3 : register3  = writeData;
@@ -187,7 +187,7 @@ module Registers (
             5'h1D: register29 = writeData;
             5'h1E: register30 = writeData;
             5'h1F: register31 = writeData;
-            default: register0 = 32'b0;
+            default: register0 = 32'd0;
            endcase
         end
     end

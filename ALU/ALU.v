@@ -17,11 +17,11 @@ module ALU (
     genvar i;
     generate
       for (i = 0; i < 32; i = i + 1) begin : MUX_BIT
-        wire sel_add = (~ALUOp[3]&~ALUOp[2]& ALUOp[1]&~ALUOp[0]); // 0010
-        wire sel_sub = (~ALUOp[3]& ALUOp[2]& ALUOp[1]&~ALUOp[0]); // 0110
-        wire sel_and = (~ALUOp[3]&~ALUOp[2]&~ALUOp[1]&~ALUOp[0]); // 0000
-        wire sel_or  = (~ALUOp[3]&~ALUOp[2]&~ALUOp[1]& ALUOp[0]); // 0001
-        wire sel_srl = ( ALUOp[3]&~ALUOp[2]& ALUOp[1]&~ALUOp[0]); // 1010
+        wire sel_add = (~ALUOp[3]&~ALUOp[2]& ALUOp[1]&~ALUOp[0]); // 0010 - ADD/ADDI
+        wire sel_sub = (~ALUOp[3]& ALUOp[2]& ALUOp[1]&~ALUOp[0]); // 0110 - SUB/BEQ
+        wire sel_and = (~ALUOp[3]&~ALUOp[2]&~ALUOp[1]&~ALUOp[0]); // 0000 - AND
+        wire sel_or  = (~ALUOp[3]&~ALUOp[2]&~ALUOp[1]& ALUOp[0]); // 0001 - OR/ORI
+        wire sel_srl = (~ALUOp[3]& ALUOp[2]&~ALUOp[1]& ALUOp[0]); // 0101 - SRL
 
         or(result[i],
            (resAdd[i] & sel_add),

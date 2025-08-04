@@ -44,6 +44,7 @@ module riscv (
     wire        MemRead;
     wire        MemWrite;
     wire        Branch;
+    wire        Jump;
     wire        ALUOp1;
     wire        ALUOp0;
 
@@ -82,7 +83,7 @@ module riscv (
                         );
     sum                adderB (
                           .A(instructionAddress),
-                          .B(32'd1),
+                          .B(32'd4),
                           .result(resAdderB)
                         );
     InstructionMemory  instmemo   (
@@ -98,6 +99,7 @@ module riscv (
                           .MemRead(MemRead),
                           .MemWrite(MemWrite),
                           .Branch(Branch),
+                          .Jump(Jump),
                           .ALUOp1(ALUOp1),
                           .ALUOp0(ALUOp0)
                         );
@@ -148,14 +150,15 @@ module riscv (
                           .zero(zero)
                         );
     and                branch_and (
+                          andBranch,
                           Branch,
-                          zero,
-                          andBranch
+                          zero
                         );
+    wire               orJump = andBranch | Jump;
     mux                muxA       (
                           .A(resAdderA),
                           .B(resAdderB),
-                          .select(andBranch),
+                          .select(orJump),
                           .result(nextPCPosition)
                         );
     mux                muxB       (
