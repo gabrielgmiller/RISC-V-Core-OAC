@@ -148,13 +148,13 @@ j    +0             # jump infinito
 ## 📷 Capturas de Simulação
 
 ### Estado dos Registradores
-![REGS](fotos/REGS.png)
+![REGS](fotos/UUT.png)
 
 ### Memória de Dados
 ![MEM](fotos/MEM.png)
 
 ### Unidade Top-Level (UUT)
-![UUT](fotos/UUT.png)
+![UUT](fotos/REGS.png)
 
 
 ## 🔧 Características Técnicas
