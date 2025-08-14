@@ -145,6 +145,18 @@ j    +0             # jump infinito
 | **Monociclo** | ✅7 | ✅7 | ✅0 | ✅7 | ✅1 | ✅1 | ✅7 | **7/7** |
 | **Pipeline** | ✅7 | ❌0 | ✅0 | ❌0 | ✅1 | ❌0 | ❌0 | **3/7** |
 
+## 📷 Capturas de Simulação
+
+### Estado dos Registradores
+![REGS](fotos/REGS.png)
+
+### Memória de Dados
+![MEM](fotos/MEM.png)
+
+### Unidade Top-Level (UUT)
+![UUT](fotos/UUT.png)
+
+
 ## 🔧 Características Técnicas
 
 ### Instruções Suportadas

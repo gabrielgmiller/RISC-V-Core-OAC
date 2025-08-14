@@ -51,7 +51,7 @@ module pipeline_testbench;
                UUT.reg_file.register1, UUT.reg_file.register2, UUT.reg_file.register3,
                UUT.reg_file.register4, UUT.reg_file.register5, UUT.reg_file.register6);
       $display("Mem[0]: %h | ForwardA: %b | ForwardB: %b", 
-               UUT.data_mem.mem[0], UUT.ForwardA, UUT.ForwardB);
+               UUT.data_mem.mem[0], UUopen -a gtkwave wave.vcdT.ForwardA, UUT.ForwardB);
       $display("");
     end
   end

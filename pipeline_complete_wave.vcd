@@ -1,5 +1,5 @@
 $date
-	Mon Aug  4 11:22:30 2025
+	Mon Aug  4 11:59:37 2025
 $end
 $version
 	Icarus Verilog
@@ -1014,7 +1014,7 @@ b0 |%
 bx {%
 bx z%
 b0 y%
-b11100000000000010010011 x%
+b1010000011 x%
 b0 w%
 bx0 v%
 bx u%
@@ -1024,7 +1024,7 @@ bx r%
 bx q%
 bx p%
 bx o%
-b11100000000000010010011 n%
+b1010000011 n%
 b0 m%
 xl%
 bx k%
@@ -1349,7 +1349,7 @@ bx E
 bx D
 b0 C
 bx B
-b11100000000000010010011 A
+b1010000011 A
 b0 @
 bx ?
 bx >
