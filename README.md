@@ -4,7 +4,7 @@
 
 ## 👥 Grupo 4
 - Gabriel Miller
-- [Adicione outros membros aqui]
+- Gustavo Moreira
 
 ## 📋 Funcionalidades Implementadas
 
