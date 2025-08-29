@@ -112,16 +112,6 @@ vvp sim.vvp
 # Resultado esperado: 7/7 testes passando ✅
 ```
 
-### Processador Pipeline
-```bash
-# Compilar
-iverilog -o pipeline.vvp risc-v_pipeline_final_TB.v
-
-# Executar  
-vvp pipeline.vvp
-
-# Resultado: Funcional
-```
 
 ## 📊 Resultados dos Testes
 
